@@ -34,6 +34,28 @@
 
 ## 安装
 
+三种装法，任选其一。
+
+**A. 从 GitHub 克隆**（便于后续 `git pull` 更新）
+
+```bash
+git clone git@github.com:AskLawyerZHU/legal-research-brief.git \
+  ~/.workbuddy/skills/legal-research-brief
+```
+
+SSH 不通时改走镜像下载 zip：
+
+```bash
+curl -L -o /tmp/lrb.zip "https://ghfast.top/https://github.com/AskLawyerZHU/legal-research-brief/archive/refs/tags/v1.1.2.zip"
+unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.1.2 ~/.workbuddy/skills/legal-research-brief
+```
+
+`ghfast.top` 不通就换 `gh-proxy.com`，两者读同一上游。
+
+**B. SkillHub**：搜「法律检索简报」一键安装。
+
+**C. 手动拷贝**：把本目录放到下列位置之一。
+
 1. 把本目录放到技能目录：
    - 用户级（所有项目可用）：`~/.workbuddy/skills/legal-research-brief/`
    - 项目级（团队共享）：`<项目>/.workbuddy/skills/legal-research-brief/`
