@@ -54,15 +54,14 @@ unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.1.2 ~/.w
 
 **B. SkillHub**：搜「法律检索简报」一键安装。
 
-**C. 手动拷贝**：把本目录放到下列位置之一。
+**C. 手动拷贝**：把本目录放到下列位置之一，然后配置数据源。
 
-1. 把本目录放到技能目录：
-   - 用户级（所有项目可用）：`~/.workbuddy/skills/legal-research-brief/`
-   - 项目级（团队共享）：`<项目>/.workbuddy/skills/legal-research-brief/`
-2. 配置数据源：元典走连接器；法宝在 `~/.workbuddy/mcp.json` 的 `mcpServers` 里加一项（Token 只放本机，不要写进技能）。
-3. 跑一次 `references/self-test.md` 的「环境」五项。
+1. 用户级（所有项目可用）：`~/.workbuddy/skills/legal-research-brief/`
+2. 项目级（团队共享）：`<项目>/.workbuddy/skills/legal-research-brief/`
+3. 配置数据源：元典走连接器；法宝在 `~/.workbuddy/mcp.json` 的 `mcpServers` 里加一项（Token 只放本机，不要写进技能）。
+4. 跑一次 `references/self-test.md` 的「环境」五项。
 
-**不做第 2 步也能用**——会进入降级模式，只输出检索式和待查清单。这是设计好的行为，不是故障。
+**不做第 3 步也能用**——会进入降级模式，只输出检索式和待查清单。这是设计好的行为，不是故障。
 
 ## 目录
 
