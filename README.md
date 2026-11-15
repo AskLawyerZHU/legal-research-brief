@@ -46,8 +46,8 @@ git clone git@github.com:AskLawyerZHU/legal-research-brief.git \
 SSH 不通时改走镜像下载 zip：
 
 ```bash
-curl -L -o /tmp/lrb.zip "https://ghfast.top/https://github.com/AskLawyerZHU/legal-research-brief/archive/refs/tags/v1.1.2.zip"
-unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.1.2 ~/.workbuddy/skills/legal-research-brief
+curl -L -o /tmp/lrb.zip "https://ghfast.top/https://github.com/AskLawyerZHU/legal-research-brief/archive/refs/tags/v1.2.0.zip"
+unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.2.0 ~/.workbuddy/skills/legal-research-brief
 ```
 
 `ghfast.top` 不通就换 `gh-proxy.com`，两者读同一上游。
@@ -69,6 +69,7 @@ unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.1.2 ~/.w
 SKILL.md                        方法主体（只写抽象动作，不含具体工具名）
 references/
   workflow.md                   争点拆解、关键词设计、类案三档、交叉复核
+  example-brief.md              完整范例：一份写完的简报长什么样（写第一稿前必看）
   source-tagging.md             五种来源标签、双层引用、时效与分歧标注
   report-format.md              简报六节结构、网页填写要点、对外版改动
   responsibility.md             两种模式、脱敏、免责、硬边界
@@ -83,6 +84,7 @@ references/
 assets/
   report-template.html          报告网页模板（内联样式，可离线打开、可打印）
   relation-map-template.html    法律关系图模板（自包含 SVG，打开即见、可打印）
+  chart-templates.html          另四种图型模板：请求权基础图 / 结果分布图 / 时间轴 / 争点攻防图
 ```
 
 ## 公众号 / 法院发布这条轨怎么用

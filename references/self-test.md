@@ -10,7 +10,7 @@
 | 2 | 类案库是否可用 | `search_cases(cause_of_action=["合同纠纷"], top_k=1)` 有返回 |
 | 3 | 权威案例库是否可用 | `search_authoritative_cases(top_k=1)` 有返回 |
 | 4 | 回链实际能力 | 对任一案例调 `get_case_detail`，读 `share_access`。**本机实测为 `login_required`＋`share_expires_at: null`，属正常**——通过标准是「如实记录实际值」，不是「必须免登录」。读到 `login_free` 时须同时记下到期日 |
-| 5 | 工具名是否对得上 | 五个动作全部能调通，无"工具不存在"错误 |
+| 5 | 工具名是否对得上 | `SKILL.md` 第三步表里的**九个需工具支撑的动作**全部能调通，无"工具不存在"错误（`make_share_link` 不算——它从 detail 返回字段读，没有独立工具） |
 
 五项全过 → 能力卡写「全功能」；1–4 有缺 → 按 `adapters/no-db.md` 降级；5 不过 → 回到 `adapters/yuandian.md` 第二节核对现用名。
 
@@ -55,7 +55,7 @@
 | 真实凭证值（`sk-` 开头的串、长 base64、实际 SERVICE_ID） | 0 处 |
 | 绝对路径（`C:\Users\…`、`E:\…`） | 0 处 |
 | 真实当事人姓名 | 0 处（示例须虚构） |
-| 真实案号 | 0 处（除非是公开指导性案例） |
+| 真实案号 | 允许，但仅限**已公开的裁判文书**，且不得同时出现当事人真实姓名、身份证号、住址（与 `responsibility.md` 第四节一致） |
 | `.workbuddy/mcp.json` 的实际内容 | 不出现 |
 
 > 配置示例里的 `{TOKEN}`、`{SERVICE_ID}`、`Bearer` 属于占位写法，允许保留——它们不含真实值。检查的是**值**，不是关键词。
