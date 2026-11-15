@@ -1,0 +1,177 @@
+<!doctype html>
+<!--
+  法律关系图模板 · legal-research-brief
+  用法：把 {{...}} 全部替换成实际内容后另存为独立文件交付。
+  硬规则（来自 references/visualization.md）：
+    1. 正文字号 ≥12px，标题 ≥17px；卡片内边距 ≥18px
+    2. 逐行核算文字宽度：可用宽度 ÷ 字号 = 单行字数上限，宁拆两行不许溢出
+    3. 连线不得穿过卡片；画斜线前先算它在卡片边线所在 y 处的 x 坐标
+    4. 必须有「待核验」区，不许把 [待检索] 藏起来
+    5. 不许用 emoji 做图形元素；色彩只用语义色，不超过四色
+    6. 横轴必须从 0 起、等距刻度，不许截断制造视觉冲击
+    7. 样本量必须标注；色块不代表裁判对错
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{图标题}}｜法律关系图</title>
+<style>
+  html,body{margin:0;padding:0;background:#eef1f5}
+  .wrap{max-width:1500px;margin:0 auto;padding:24px}
+  svg{display:block;width:100%;height:auto;background:#f4f6f9;border-radius:10px;
+      box-shadow:0 1px 3px rgba(27,36,48,.08)}
+  @media print{
+    html,body{background:#fff}
+    .wrap{padding:0;max-width:none}
+    svg{border-radius:0;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- 画布尺寸按内容调整；1440x1200 适合「三角关系 + 一条分布轴 + 待核验区」 -->
+<svg viewBox="0 0 1440 1200" xmlns="http://www.w3.org/2000/svg"
+     font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei','Noto Sans SC',sans-serif">
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+    </marker>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a95a4"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1440" height="1200" fill="#f4f6f9"/>
+
+  <!-- ===== 标题区 ===== -->
+  <text x="48" y="82" font-size="34" font-weight="700" fill="#1b2430">{{图标题}}</text>
+  <text x="48" y="116" font-size="16" fill="#5b6776">{{一句话副标题：场景 ｜ 这张图回答什么}}</text>
+  <text x="1392" y="70" font-size="13" fill="#5b6776" text-anchor="end">法律检索简报 · 附图</text>
+  <text x="1392" y="92" font-size="13" fill="#5b6776" text-anchor="end">检索日期 {{YYYY-MM-DD}}　｜　{{数据来源}}</text>
+  <line x1="48" y1="140" x2="1392" y2="140" stroke="#d9dee6" stroke-width="1"/>
+
+  <!-- ===== 连线（务必先画，压在卡片下面） =====
+       实线＝已成立的关系　虚线＝待证／事实状态　红色箭头＝违约或侵权方向 -->
+  <line x1="480" y1="250" x2="960" y2="250" stroke="#2f5d8c" stroke-width="2"/>
+  <line x1="480" y1="310" x2="960" y2="310" stroke="#2f5d8c" stroke-width="2" stroke-dasharray="7 5"/>
+  <line x1="340" y1="350" x2="590" y2="620" stroke="#8a95a4" stroke-width="2" stroke-dasharray="5 6"
+        marker-end="url(#ar2)" marker-start="url(#ar2)"/>
+  <line x1="1100" y1="350" x2="850" y2="620" stroke="#c0392b" stroke-width="2.4" marker-end="url(#ar)"/>
+
+  <!-- ===== 主体 A ===== -->
+  <rect x="200" y="200" width="280" height="150" rx="10" fill="#ffffff" stroke="#dde2ea"/>
+  <rect x="200" y="200" width="280" height="5" rx="2.5" fill="#2f5d8c"/>
+  <text x="220" y="236" font-size="19" font-weight="700" fill="#1b2430">{{主体A名称}}</text>
+  <text x="220" y="260" font-size="13" fill="#5b6776">{{A的角色定位}}</text>
+  <text x="220" y="288" font-size="13" fill="#3c4c60">{{A的举证重点第一行}}</text>
+  <text x="220" y="310" font-size="13" fill="#3c4c60">{{A的第二行}}</text>
+  <text x="220" y="332" font-size="13" fill="#3c4c60">{{A的第三行}}</text>
+
+  <!-- ===== 主体 B ===== -->
+  <rect x="960" y="200" width="280" height="150" rx="10" fill="#ffffff" stroke="#dde2ea"/>
+  <rect x="960" y="200" width="280" height="5" rx="2.5" fill="#1e8e5a"/>
+  <text x="980" y="236" font-size="19" font-weight="700" fill="#1b2430">{{主体B名称}}</text>
+  <text x="980" y="260" font-size="13" fill="#5b6776">{{B的角色定位}}</text>
+  <text x="980" y="288" font-size="13" fill="#3c4c60">{{B的举证重点第一行}}</text>
+  <text x="980" y="310" font-size="13" fill="#3c4c60">{{B的第二行}}</text>
+  <text x="980" y="332" font-size="13" fill="#3c4c60">{{B的第三行}}</text>
+
+  <!-- ===== 主体 C（第三方；两方场景可删此卡） ===== -->
+  <rect x="580" y="620" width="280" height="110" rx="10" fill="#ffffff" stroke="#dde2ea"/>
+  <rect x="580" y="620" width="280" height="5" rx="2.5" fill="#8a95a4"/>
+  <text x="600" y="656" font-size="19" font-weight="700" fill="#1b2430">{{主体C名称}}</text>
+  <text x="600" y="680" font-size="13" fill="#5b6776">{{C的地位：是否本案当事人}}</text>
+  <text x="600" y="706" font-size="13" fill="#3c4c60">{{C的认定依据第一行}}</text>
+  <text x="600" y="724" font-size="12.5" fill="#8a95a4">{{C的认定依据第二行}}</text>
+
+  <!-- ===== 关系线标签（挂在线上方或下方，不得压线） ===== -->
+  <text x="720" y="240" font-size="14" font-weight="600" fill="#2f5d8c" text-anchor="middle">① {{关系一名称}}　{{它是什么}}</text>
+  <text x="720" y="302" font-size="14" font-weight="600" fill="#2f5d8c" text-anchor="middle">② {{关系二名称}}　{{它是什么}}</text>
+
+  <!-- ===== 左下说明卡 ===== -->
+  <rect x="80" y="450" width="340" height="130" rx="9" fill="#ffffff" stroke="#dde2ea"/>
+  <text x="100" y="478" font-size="14.5" font-weight="700" fill="#3c4c60">③ {{问题三标题}}</text>
+  <text x="100" y="504" font-size="12.8" fill="#3c4c60">{{一句判断标准}}</text>
+  <text x="100" y="526" font-size="12.5" fill="#5b6776">· {{要点一}}</text>
+  <text x="100" y="548" font-size="12.5" fill="#5b6776">· {{要点二}}</text>
+  <text x="100" y="570" font-size="12.5" fill="#5b6776">· {{要点三}}</text>
+
+  <!-- ===== 右下说明卡 ===== -->
+  <rect x="1020" y="450" width="340" height="130" rx="9" fill="#ffffff" stroke="#f0d5d1"/>
+  <text x="1040" y="478" font-size="14.5" font-weight="700" fill="#c0392b">④ {{问题四标题}}</text>
+  <text x="1040" y="504" font-size="12.8" fill="#3c4c60">{{行为的法律定性}}</text>
+  <text x="1040" y="526" font-size="12.5" fill="#5b6776">{{后果的可并列性；注意不要写成必然全额}}</text>
+  <text x="1040" y="548" font-size="12.5" fill="#5b6776">· {{后果一}}　· {{后果二}}</text>
+  <text x="1040" y="570" font-size="12" fill="#8a95a4">依据：{{法规名}}第 {{X}} 条</text>
+
+  <!-- ===== 中心要件卡（两方场景可删） ===== -->
+  <rect x="600" y="400" width="250" height="160" rx="9" fill="#eef3f9" stroke="#c9daeb"/>
+  <text x="620" y="426" font-size="14.5" font-weight="700" fill="#2f5d8c">{{要件总称}}</text>
+  <text x="620" y="452" font-size="12.5" font-weight="600" fill="#3c4c60">① {{要件一}}</text>
+  <text x="620" y="470" font-size="12" fill="#5b6776">{{要件一说明}}</text>
+  <text x="620" y="496" font-size="12.5" font-weight="600" fill="#3c4c60">② {{要件二}}</text>
+  <text x="620" y="514" font-size="12" fill="#5b6776">{{要件二说明}}</text>
+  <text x="620" y="540" font-size="12.5" font-weight="600" fill="#3c4c60">③ {{要件三}}</text>
+  <text x="620" y="558" font-size="12" fill="#5b6776">{{要件三说明}}</text>
+
+  <line x1="48" y1="770" x2="1392" y2="770" stroke="#d9dee6" stroke-width="1"/>
+
+  <!-- ===== 结果分布（没有分布型结论就整段删掉，别硬凑） =====
+       横轴固定 0–100%，刻度等距；条形长度 = 判决额 ÷ 主张额；不可比的用文字单独说明 -->
+  <text x="48" y="800" font-size="17" font-weight="700" fill="#1b2430">{{分布区标题}}　{{分子}} ÷ {{分母}}</text>
+  <text x="1392" y="800" font-size="12.5" fill="#8a95a4" text-anchor="end">{{样本量}} 件样本，不足以支撑「多数法院认为」这类表述</text>
+
+  <line x1="500" y1="830" x2="1180" y2="830" stroke="#d9dee6" stroke-width="1"/>
+  <line x1="500" y1="830" x2="500" y2="975" stroke="#e9edf2" stroke-width="1"/>
+  <line x1="840" y1="830" x2="840" y2="975" stroke="#e9edf2" stroke-width="1"/>
+  <line x1="1180" y1="830" x2="1180" y2="975" stroke="#e9edf2" stroke-width="1"/>
+  <text x="500" y="824" font-size="11.5" fill="#8a95a4" text-anchor="middle">0%</text>
+  <text x="840" y="824" font-size="11.5" fill="#8a95a4" text-anchor="middle">50%</text>
+  <text x="1180" y="824" font-size="11.5" fill="#8a95a4" text-anchor="middle">100%</text>
+
+  <!-- 第一行 -->
+  <text x="48" y="855" font-size="13" font-weight="600" fill="#3c4c60">{{样本一}}</text>
+  <text x="48" y="872" font-size="11.5" fill="#8a95a4">{{效力类型}}　{{主张额}}</text>
+  <rect x="500" y="845" width="{{宽度1}}" height="20" rx="2" fill="#1e8e5a"/>
+  <text x="{{500+宽度1+10}}" y="860" font-size="13" font-weight="700" fill="#1e8e5a">{{比例1}}</text>
+  <text x="{{500+宽度1+60}}" y="860" font-size="12.5" fill="#5b6776">{{判决额1}}</text>
+
+  <!-- 第二行 -->
+  <text x="48" y="905" font-size="13" font-weight="600" fill="#3c4c60">{{样本二}}</text>
+  <text x="48" y="922" font-size="11.5" fill="#8a95a4">{{效力类型}}　{{主张额}}</text>
+  <rect x="500" y="895" width="{{宽度2}}" height="20" rx="2" fill="#b8860b"/>
+  <text x="{{500+宽度2+10}}" y="910" font-size="13" font-weight="700" fill="#b8860b">{{比例2}}</text>
+  <text x="{{500+宽度2+60}}" y="910" font-size="12.5" fill="#5b6776">{{判决额2}}</text>
+
+  <!-- 第三行 -->
+  <text x="48" y="955" font-size="13" font-weight="600" fill="#3c4c60">{{样本三}}</text>
+  <text x="48" y="972" font-size="11.5" fill="#8a95a4">{{效力类型}}　{{主张额}}</text>
+  <rect x="500" y="945" width="{{宽度3}}" height="20" rx="2" fill="#c0392b" opacity="0.85"/>
+  <text x="{{500+宽度3+10}}" y="960" font-size="13" font-weight="700" fill="#c0392b">{{比例3}}</text>
+  <text x="{{500+宽度3+10}}" y="978" font-size="12.5" fill="#5b6776">{{判决额3}}</text>
+
+  <text x="48" y="1006" font-size="12.5" fill="#8a95a4">{{不可比的样本：为何不可比，不作比例推算}}</text>
+  <text x="48" y="1026" font-size="12.5" fill="#8a95a4">色块仅表示{{调减／支持幅度}}，不表示裁判对错。各案行业、审级、约定结构均不同，不构成同一情形下的裁判冲突，不可作为预期值使用。</text>
+
+  <!-- ===== 待核验区（不可删；确实没有就写「本次无待核验项」） ===== -->
+  <rect x="48" y="1052" width="1344" height="98" rx="9" fill="#fdf8ee" stroke="#f0e2c4"/>
+  <text x="70" y="1078" font-size="13.5" font-weight="700" fill="#7a5c1e">待核验　不进结论（本库按法规名与关键词多次检索均未检得原文，不得凭记忆补写）</text>
+  <text x="70" y="1104" font-size="12.3" fill="#7a5c1e">① {{待核验事项一}}　→ {{人工核验路径}}</text>
+  <text x="70" y="1126" font-size="12.3" fill="#7a5c1e">② {{待核验事项二}}</text>
+  <text x="780" y="1104" font-size="12.3" fill="#7a5c1e">③ {{待核验事项三}}</text>
+  <text x="780" y="1126" font-size="12.3" fill="#7a5c1e">④ {{待核验事项四}}</text>
+</svg>
+</div>
+</body>
+</html>
+<!--
+  渲染校验（Windows）：
+  "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" \
+    --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
+    --window-size=1548,1248 --screenshot="check.png" "file:///绝对路径/文件.html"
+
+  看图逐项确认：文字无溢出 / 连线不穿卡 / 标签不压线 / 待核验区完整。
+  注意：{{500+宽度1+10}} 这类是提示你按实际宽度算坐标，替换时务必落成具体数字。
+-->

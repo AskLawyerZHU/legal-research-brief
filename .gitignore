@@ -1,0 +1,12 @@
+# 本机配置，含数据源凭证，不入库
+profile.json
+*local.json
+
+# 系统与依赖
+.DS_Store
+Thumbs.db
+node_modules/
+
+# 打包产物
+*.zip
+dist/

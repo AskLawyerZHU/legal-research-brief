@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{案件或问题名称}}｜法律检索简报</title>
+<style>
+  :root{
+    --ink:#1b2430; --ink-2:#3c4c60; --muted:#5b6776; --line:#e3e6ec;
+    --bg:#f4f6f9; --card:#ffffff; --accent:#2f5d8c; --accent-soft:#eef3f9;
+    --ok:#1e8e5a; --warn:#b8860b; --risk:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","Noto Sans SC",sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased}
+  .page{max-width:960px;margin:0 auto;padding:40px 32px 64px}
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:40px 44px}
+
+  /* 头部 */
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:600;margin-bottom:10px}
+  h1{font-size:28px;line-height:1.35;margin:0 0 12px;letter-spacing:-.01em}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--muted);
+    border-bottom:1px solid var(--line);padding-bottom:18px}
+  .meta b{color:var(--ink-2);font-weight:600}
+
+  /* 结论 */
+  .conclusion{margin:26px 0 8px;padding:20px 22px;background:var(--accent-soft);
+    border-left:4px solid var(--accent);border-radius:0 10px 10px 0}
+  .conclusion h2{margin:0 0 8px;font-size:15px;color:var(--accent);letter-spacing:.04em}
+  .conclusion p{margin:0;font-size:16px;color:var(--ink)}
+  .conclusion ul{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2)}
+
+  /* 章节 */
+  h2.sec{font-size:18px;margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h3.sub{font-size:15px;margin:22px 0 8px;color:var(--ink-2)}
+
+  /* 表格 */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 4px}
+  th{text-align:left;font-weight:600;color:var(--muted);background:#fafbfc;
+    padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px;border-bottom:1px solid #f0f2f5;vertical-align:top;color:var(--ink-2)}
+  tr:last-child td{border-bottom:none}
+
+  /* 争点卡 */
+  .issue{border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+  .issue h4{margin:0 0 10px;font-size:15px;color:var(--ink)}
+  .issue dl{margin:0;display:grid;grid-template-columns:76px 1fr;gap:8px 14px;font-size:13.5px}
+  .issue dt{color:var(--muted);font-weight:600}
+  .issue dd{margin:0;color:var(--ink-2)}
+
+  /* 标签 */
+  .tag{display:inline-block;font-size:12px;line-height:1.6;padding:1px 8px;border-radius:999px;
+    border:1px solid currentColor;white-space:nowrap}
+  .t-ok{color:var(--ok)} .t-warn{color:var(--warn)} .t-risk{color:var(--risk)} .t-mute{color:var(--muted)}
+
+  /* 条文块 */
+  .statute{background:#fafbfc;border:1px solid var(--line);border-radius:8px;
+    padding:12px 14px;margin:8px 0;font-size:13.5px}
+  .statute .src{font-size:12px;color:var(--muted);margin-top:8px}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(47,93,140,.3)}
+  a:hover{border-bottom-color:var(--accent)}
+
+  /* 页脚 */
+  .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .foot p{margin:6px 0}
+  .disclaimer{background:#fdf8ee;border:1px solid #f0e2c4;border-radius:8px;padding:14px 16px;
+    font-size:12.5px;color:#7a5c1e;margin-top:18px}
+
+  @media print{
+    body{background:#fff}
+    .page{padding:0;max-width:none}
+    .doc{border:none;border-radius:0;padding:0}
+    .issue,.statute{break-inside:avoid}
+  }
+  @media(max-width:640px){
+    .page{padding:20px 14px 40px}
+    .doc{padding:24px 18px}
+    h1{font-size:22px}
+    .issue dl{grid-template-columns:1fr;gap:4px}
+    .issue dt{margin-top:8px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+<article class="doc">
+
+  <!-- ① 头部：标题用问题表述，不写"研究报告"这类空标题 -->
+  <div class="kicker">法律检索简报 / LEGAL RESEARCH BRIEF</div>
+  <h1>{{用一句话写出要回答的问题}}</h1>
+  <div class="meta">
+    <span>检索日期 <b>{{YYYY-MM-DD}}</b></span>
+    <span>数据来源 <b>{{元典法规库 / 元典案例库}}</b></span>
+    <span>检索范围 <b>{{时间窗}}｜{{地域}}｜{{审级}}</b></span>
+    <span>密级 <b>{{保密 / 内部法律分析}}</b></span>
+  </div>
+
+  <!-- ② 结论：最多 5 行，先给答案 -->
+  <section class="conclusion">
+    <h2>结论</h2>
+    <p>{{一句话回答。例如：在协议仅约定"年满十八周岁"、未附其他条件的情况下，给付义务已届期，义务人应当履行。}}</p>
+    <ul>
+      <li>核心依据：{{《法规名》第 X 条（现行有效）；（YYYY）…号（XX 中院，二审）}}</li>
+      <li>不确定项：{{X 条未复核；{{地区}}类案未检索到}}</li>
+    </ul>
+  </section>
+
+  <!-- ③ 法条索引：按效力级别降序 -->
+  <h2 class="sec">一、法条索引</h2>
+  <table>
+    <thead><tr><th>规范</th><th>条款</th><th>要旨</th><th>时效</th><th>来源</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>《中华人民共和国民法典》</td>
+        <td>第五百零九条</td>
+        <td>当事人应按约全面履行义务</td>
+        <td><span class="tag t-ok">现行有效</span></td>
+        <td>元典 · {{YYYY-MM-DD}}</td>
+      </tr>
+      <tr>
+        <td>{{《XX 解释》}}</td>
+        <td>{{第 X 条}}</td>
+        <td>{{要旨}}</td>
+        <td><span class="tag t-ok">现行有效</span></td>
+        <td>元典 · {{YYYY-MM-DD}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">条文原文（关键条文）</h3>
+  <div class="statute">
+    <strong>《中华人民共和国民法典》第五百零九条</strong><br>
+    {{条文原文，逐字，不得改写}}
+    <div class="src">时效：现行有效｜法律｜2021-01-01 施行｜来源：元典 {{YYYY-MM-DD}}｜
+      <a href="{{url}}">打开原文</a><!-- 仅当 share_access=login_free 时保留上一句并补「（免登录，有效期至 {{YYYY-MM-DD}}）」；否则删掉链接，改为「需登录，原文已录于上」 --></div>
+  </div>
+
+  <!-- ④ 类案要旨：两库都查，标审级与效力 -->
+  <h2 class="sec">二、类案要旨</h2>
+  <table>
+    <thead><tr><th>案号</th><th>法院 / 审级</th><th>裁判日期</th><th>争议焦点</th><th>裁判要旨</th><th>相关性</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>{{（YYYY）X 民终 XXXX 号}}</td>
+        <td>{{XX 市中级人民法院 / 二审}}</td>
+        <td>{{YYYY-MM-DD}}</td>
+        <td>{{争点}}</td>
+        <td>{{用自己的话概括要旨；二审改判的写明改判理由}}</td>
+        <td><span class="tag t-ok">高</span></td>
+      </tr>
+      <tr>
+        <td>{{指导性案例第 X 号}}</td>
+        <td>{{最高人民法院}}</td>
+        <td>{{YYYY-MM-DD}}</td>
+        <td>{{争点}}</td>
+        <td>{{要旨}}</td>
+        <td><span class="tag t-ok">高 · 指导性</span></td>
+      </tr>
+      <tr>
+        <td>{{（YYYY）X 民初 XXXX 号}}</td>
+        <td>{{XX 区人民法院 / 一审}}</td>
+        <td>{{YYYY-MM-DD}}</td>
+        <td>{{争点}}</td>
+        <td>{{要旨}}</td>
+        <td><span class="tag t-warn">中</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ⑤ 争点分析：每个争点必须有"反方" -->
+  <h2 class="sec">三、争点分析</h2>
+
+  <div class="issue">
+    <h4>争点一：{{…}}</h4>
+    <dl>
+      <dt>规范</dt><dd>{{《法规名》第 X 条；{{解释}}第 X 条}}</dd>
+      <dt>类案</dt><dd>{{（YYYY）…号（高相关）；（YYYY）…号（中相关，结论相反）}}</dd>
+      <dt>判断</dt><dd>{{倾向于……。理由：①… ②… ③…}}</dd>
+      <dt>反方</dt><dd>{{对方可能主张……；可用……回应}}</dd>
+      <dt>未决</dt><dd>{{{{地区}}口径未检索到，建议补检}}</dd>
+    </dl>
+  </div>
+
+  <div class="issue">
+    <h4>争点二：{{…}}</h4>
+    <dl>
+      <dt>规范</dt><dd>{{…}}</dd>
+      <dt>类案</dt><dd>{{…}}</dd>
+      <dt>判断</dt><dd>{{…}}</dd>
+      <dt>反方</dt><dd>{{…}}</dd>
+    </dl>
+  </div>
+
+  <!-- ⑥ 反方与风险 -->
+  <h2 class="sec">四、反方观点与风险</h2>
+  <table>
+    <thead><tr><th>对立观点</th><th>来源</th><th>影响</th></tr></thead>
+    <tbody>
+      <tr><td>{{对方可能的抗辩}}</td><td>{{（YYYY）…号 / {{地区}}实践}}</td><td><span class="tag t-risk">中</span>{{削弱哪一环}}</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ⑦ 检索声明：不可省 -->
+  <h2 class="sec">五、检索范围与说明</h2>
+  <table>
+    <tbody>
+      <tr><th style="width:120px">检索日期</th><td>{{YYYY-MM-DD}}</td></tr>
+      <tr><th>数据来源</th><td>{{元典法规库；元典案例库（普通库＋权威库）}}</td></tr>
+      <tr><th>覆盖范围</th><td>{{时间窗｜地域｜审级｜案由}}</td></tr>
+      <tr><th>未覆盖</th><td>{{地方规范性文件仅检索到 X 件；案例库单次最多返回前 500 条，命中数超出时按相关性截取}}</td></tr>
+      <tr><th>未复核</th><td>{{列明哪几条未做二次复核}}</td></tr>
+    </tbody>
+  </table>
+
+  <div class="disclaimer">
+    <strong>说明</strong><br>
+    本文件基于公开法律法规与裁判文书整理，检索截止日期见上。法律规范可能被修订或废止，案例可能被再审改判，引用前请以官方发布文本为准。<br>
+    文中如附链接，为检索时生成的限时链接且可能需要登录；如已失效或无法打开，请按条文号 / 案号在官方数据库复核。关键条文与裁判理由已摘录于正文，不依赖链接阅读。<br>
+    {{若已脱敏：当事人姓名、公司名称等信息已做技术处理。}}<br>
+    本文件不构成法律意见，不替代执业律师基于具体事实作出的判断。
+  </div>
+
+  <div class="foot">
+    <p>{{机构或作者}} · 生成于 {{YYYY-MM-DD}}</p>
+    <p>法条与案例引用格式：永久标识（法规名＋条款号 / 案号＋法院＋裁判日期）＋来源库＋检索日期</p>
+  </div>
+
+</article>
+</div>
+</body>
+</html>
