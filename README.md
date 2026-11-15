@@ -69,7 +69,6 @@ unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.2.0 ~/.w
 SKILL.md                        方法主体（只写抽象动作，不含具体工具名）
 references/
   workflow.md                   争点拆解、关键词设计、类案三档、交叉复核
-  example-brief.md              完整范例：一份写完的简报长什么样（写第一稿前必看）
   source-tagging.md             五种来源标签、双层引用、时效与分歧标注
   report-format.md              简报六节结构、网页填写要点、对外版改动
   responsibility.md             两种模式、脱敏、免责、硬边界
