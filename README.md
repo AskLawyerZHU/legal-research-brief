@@ -46,8 +46,8 @@ git clone git@github.com:AskLawyerZHU/legal-research-brief.git \
 SSH 不通时改走镜像下载 zip：
 
 ```bash
-curl -L -o /tmp/lrb.zip "https://ghfast.top/https://github.com/AskLawyerZHU/legal-research-brief/archive/refs/tags/v1.2.0.zip"
-unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.2.0 ~/.workbuddy/skills/legal-research-brief
+curl -L -o /tmp/lrb.zip "https://ghfast.top/https://github.com/AskLawyerZHU/legal-research-brief/archive/refs/tags/v1.2.3.zip"
+unzip -q /tmp/lrb.zip -d /tmp/lrb && mv /tmp/lrb/legal-research-brief-1.2.3 ~/.workbuddy/skills/legal-research-brief
 ```
 
 `ghfast.top` 不通就换 `gh-proxy.com`，两者读同一上游。
